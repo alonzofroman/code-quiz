@@ -1,0 +1,34 @@
+:root {
+    --blue: rgb(53, 143, 245);
+    --white: #fff;  
+    --black: rgb(0, 0, 0);
+    --navy: rgb(6, 16, 112);
+}
+
+.header h1 {
+    display: block;
+    text-align: center;
+    background-color: var(--navy);
+    color: var(--white);
+    width: 100%;
+
+}
+
+.body {
+    background-color: var(--blue);
+}
+
+.main {
+    display: grid;
+    width: 100%;
+    grid-template-columns;
+    repeat(3, 1fr);
+}
+
+.quiz {
+    background-color: var(--white);
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    height: 400px;
+    width: 500px;
+}
