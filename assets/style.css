@@ -19,16 +19,14 @@
 }
 
 .main {
-    display: grid;
-    width: 100%;
-    grid-template-columns;
-    repeat(3, 1fr);
+   
 }
 
 .quiz {
     background-color: var(--white);
     border-style: solid;
     border-color: rgb(0, 0, 0);
+    color: var(--black);
     height: 400px;
     width: 500px;
 }
