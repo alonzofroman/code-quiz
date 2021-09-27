@@ -37,16 +37,25 @@ const questionList = [
 
 
 
+//Set at visible timer to create a time limit, ending the quiz when it hits zero
+
+
+
+function startQuiz() {
 
 //Set a user score, starting at zero
+let userScore = 0; 
 
-var userScore = 0,
-
-//Set at visible timer to create a time limit, ending the quiz when it hits zero
+let currentQuestion = 0;
 
 //Have them be displayed as text one at a time
 
+questionSlot.innerHTML += "<p>" + question + "</p>";
+optionASlot.innerHTML += "<p>" + optionA + "</p>";
+optionBSlot.innerHTML += "<p>" + optionB + "</p>";
+optionCSlot.innerHTML += "<p>" + optionC + "</p>"
 
+}
 
 //Take the user's input and check if it matches the predetermined answers
 
