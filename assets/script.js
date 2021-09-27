@@ -8,10 +8,9 @@ const questionSlot = document.getElementById("question");
 const optionASlot = document.getElementById("optionA");
 const optionBSlot = document.getElementById("optionB");
 const optionCSlot = document.getElementById("optionC");
+const optionDSlot = document.getElementById("optionD");
 
-const selectA =document.getElementById("selectA");
-const selectB = document.getElementById("selectB"); //Edit these to add event listeners
-const selectC = document.getElementById("selectC");
+
 
 //Write every question on the quiz with three answer options
 
@@ -22,7 +21,7 @@ const questionList = [
             optionA: "Variant",
             optionB: "Variable",
             optionC: "Variety",
-            correctAnswer: optionB,
+            optionD: "Variance"
     },
     //Question 2
     {
@@ -30,11 +29,26 @@ const questionList = [
             optionA: "link",
             optionB: "style",
             optionC: "script",
-           correctAnswer: optionC,
+            optionD: "href",
     },
     //Question 3
 ]
 
+//Set variables for true statements when pressed
+var selectA = optionA.value = false;
+var selectB = optionB.value = false;
+var selectC = optionC.value = false;
+var selectD = optionD.value = false;
+
+function selectAnswer() {
+     selectA = !selectA;  //I'm trying to get this working
+ };
+
+optionA.addEventListener("click", selectAnswer());
+
+
+
+console.log(selectA);
 
 
 //Set at visible timer to create a time limit, ending the quiz when it hits zero
@@ -46,14 +60,16 @@ function startQuiz() {
 //Set a user score, starting at zero
 let userScore = 0; 
 
-let currentQuestion = 0;
+let questionNumber = 0;
+let currentQuestion = questionList[questionNumber];
 
 //Have them be displayed as text one at a time
 
-questionSlot.innerHTML += "<p>" + question + "</p>";
-optionASlot.innerHTML += "<p>" + optionA + "</p>";
-optionBSlot.innerHTML += "<p>" + optionB + "</p>";
-optionCSlot.innerHTML += "<p>" + optionC + "</p>"
+questionSlot.innerHTML += "<p>" + currentQuestion.question + "</p>";
+optionASlot.innerHTML += currentQuestion.optionA;
+optionBSlot.innerHTML += currentQuestion.optionB;
+optionCSlot.innerHTML += currentQuestion.optionC;
+optionDSlot.innerHTML += currentQuestion.optionD;
 
 }
 
@@ -68,3 +84,4 @@ optionCSlot.innerHTML += "<p>" + optionC + "</p>"
 //Display the user's score and track it locally when the quiz is complete, allowing the user to input their initials
 
 
+startQuiz();
