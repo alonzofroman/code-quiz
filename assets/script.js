@@ -67,6 +67,8 @@ const questionList = [
             optionC: "if",
             optionD: "do",
     },
+    //End Question
+        
 ]
 
 //Set at visible timer to create a time limit, ending the quiz when it hits zero
@@ -91,7 +93,9 @@ function displayQuestion() {
     optionBSlot.innerHTML += currentQuestion.optionB;
     optionCSlot.innerHTML += currentQuestion.optionC;
     optionDSlot.innerHTML += currentQuestion.optionD;
-}
+
+    
+};
 
 //Function to clear text from previous question
 function clearQuizBox() {
@@ -104,6 +108,29 @@ function clearQuizBox() {
     // optionBSelect.checked = false;
     // optionCSelect.checked = false;
     // optionDSelect.checked = false;
+};
+
+
+//Set a Timer
+var secondsLeft = 120;
+
+function countDown() {
+countDownTimer.innerHTML += "<h3>" + "Time Left: " + secondsLeft + "</h3>"
+    var timeInterval = setInterval(function() {
+        secondsLeft--;
+
+    if (secondsLeft > 0) {
+
+    }
+    })
+}
+
+
+
+
+//Function for the end of the quiz
+function endQuiz() {
+    prompt()
 }
 
 // var checkedAnswer = document.querySelector('input[name="option"]:checked');
@@ -111,36 +138,49 @@ function clearQuizBox() {
 
 function startQuiz() {
     displayQuestion();
+    countDown();
+
 }
-
 // var checkedAnswer = document.querySelector('input[type=radio][name=option]:checked');
-answerChoices.addEventListener("click", function (event) {
-    var checkedAnswer = event.target.getAttribute("data-value");
-console.log(checkedAnswer);
-    if (checkedAnswer === questionList[questionNumber].correctAnswer) {
-        clearQuizBox();
-        questionNumber++;
+
+// while (questionNumber<6) {
+    // displayQuestion();
+    answerChoices.addEventListener("click", function (event) {
+        var checkedAnswer = event.target.getAttribute("data-value");
+
+    console.log(checkedAnswer);
+   
+    if (questionNumber == questionList.length - 1 && checkedAnswer === questionList[questionNumber].correctAnswer) {
         userScore++;
-        console.log(userScore);
-        displayQuestion();
-        console.log(questionNumber);
-    }
+        endQuiz(); }
+
+    else if (questionNumber == questionList.length - 1) {
+        endQuiz(); }
     
-
+    else if (checkedAnswer === questionList[questionNumber].correctAnswer) {
+            clearQuizBox();
+            questionNumber++;
+            userScore++;
+            console.log(userScore);
+            displayQuestion();
+            // console.log(questionNumber);
+        }
+        
+    
     else {
-        clearQuizBox();
-        questionNumber++;
-        userScore--;
-        console.log(userScore);
-        displayQuestion();
-        console.log(questionNumber);
-    }
+            clearQuizBox();
+            questionNumber++;
+            userScore--;
+            console.log(userScore);
+            displayQuestion();
+            // console.log(questionNumber);
+        }
+    
+        
+    }) 
 
-    if (questionNumber = 6) {
-        alert(userScore);
-    }
 
-}) 
+
 
 // scoreBox.innerHTML += "<p>User Score: " + userScore + "</p>";
 // function nextQuestion() {
