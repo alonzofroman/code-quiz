@@ -6,17 +6,18 @@ const highScores = document.getElementById("high-scores");
 
 const quizBox = document.getElementById("quiz");
 const questionSlot = document.getElementById("question");
+const answerChoices = document.getElementById("answers");
 const optionASlot = document.getElementById("aSlot");
 const optionBSlot = document.getElementById("bSlot");
 const optionCSlot = document.getElementById("cSlot");
 const optionDSlot = document.getElementById("dSlot");
 
 
-const optionASelect = document.getElementById("optionA");
-const optionBSelect = document.getElementById("optionB");
-const optionCSelect = document.getElementById("optionC");
-const optionDSelect = document.getElementById("optionD");
-const nextButton = document.getElementById("nextButton");
+// const optionASelect = document.getElementById("optionA");
+// const optionBSelect = document.getElementById("optionB");
+// const optionCSelect = document.getElementById("optionC");
+// const optionDSelect = document.getElementById("optionD");
+// const nextButton = document.getElementById("nextButton");
 
 
 
@@ -48,7 +49,8 @@ const questionList = [
             optionB: "message",
             optionC: "prompt",
             optionD: "popup",
-    }
+            correctAnswer: "C",
+    },
     //Question 4
     {
         question: "Which of the following is not a scope in Javascript?",
@@ -56,7 +58,15 @@ const questionList = [
             optionB: "global",
             optionC: "local",
             optionD: "block",
-    }
+    },
+    //Question 5
+    {
+        question: "Which of the following is not a loop statement in Javascript?",
+            optionA: "for",
+            optionB: "while",
+            optionC: "if",
+            optionD: "do",
+    },
 ]
 
 //Set at visible timer to create a time limit, ending the quiz when it hits zero
@@ -66,7 +76,7 @@ const questionList = [
 //Set a user score, starting at zero
 var userScore = 0;
 
-scoreBox.innerHTML += "<p>User Score: " + userScore + "</p>";
+
 
 
 //Variable to pull question number from
@@ -104,30 +114,43 @@ function startQuiz() {
 }
 
 // var checkedAnswer = document.querySelector('input[type=radio][name=option]:checked');
- 
+answerChoices.addEventListener("click", function (event) {
+    var checkedAnswer = event.target.getAttribute("data-value");
 console.log(checkedAnswer);
-function nextQuestion() {
+    if (checkedAnswer === questionList[questionNumber].correctAnswer) {
+        clearQuizBox();
+        questionNumber++;
+        userScore++;
+        console.log(userScore);
+        displayQuestion();
+        console.log(questionNumber);
+    }
+    
+
+    else {
+        clearQuizBox();
+        questionNumber++;
+        userScore--;
+        console.log(userScore);
+        displayQuestion();
+        console.log(questionNumber);
+    }
+
+    if (questionNumber = 6) {
+        alert(userScore);
+    }
+
+}) 
+
+// scoreBox.innerHTML += "<p>User Score: " + userScore + "</p>";
+// function nextQuestion() {
     // if (document.querySelector('input[name="option"].checked')) {   
     //     var checkedAnswer = document.getElementById('option').value;
     // }
      //This part is not working
      
-    if (checkedAnswer === questionList[questionNumber].correctAnswer) {
-        clearQuizBox();
-        questionNumber++;
-        userScore++;
-        displayQuestion();
-    }
-
-    else {
-        clearQuizBox();
-        questionNumber++;
-        displayQuestion();
-    }
     
-};
 
-console.log(userScore);
 
 
 //Take the user's input and check if it matches the predetermined answers

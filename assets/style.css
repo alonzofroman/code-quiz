@@ -46,13 +46,19 @@
     padding-left: 15px;
 }
 
-.option-button {
+/* .option-button {
     display: block;
     padding-top: 10px;
     padding-left: 10px;
     padding-bottom: 10px;
-}
+} */
 
+.answer-button {
+    background-color: var(--blue);
+    border-style: solid;
+    border-color: var(--navy);
+    
+}
 
 .button {
     margin: auto;
