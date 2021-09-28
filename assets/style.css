@@ -18,8 +18,22 @@
     background-color: var(--blue);
 }
 
+#info-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 20px;
+    background-color: var(--navy);
+    color: var(--white);
+    border-style: solid;
+    border-color: var(--black);
+}
+
+
+
 .quiz {
     margin: auto;
+    padding-top: 10px;
     background-color: var(--white);
     border-style: solid;
     border-color: rgb(0, 0, 0);

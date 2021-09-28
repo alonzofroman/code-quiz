@@ -2,6 +2,7 @@
 const scoreBox = document.getElementById("scores");
 const startButton = document.getElementById("start-button");
 const countDownTimer = document.getElementById("timer");
+const highScores = document.getElementById("high-scores");
 
 const quizBox = document.getElementById("quiz");
 const questionSlot = document.getElementById("question");
@@ -43,17 +44,21 @@ const questionList = [
     //Question 3
 ]
 
-//Set variables for true statements when pressed
-
-
 //Set at visible timer to create a time limit, ending the quiz when it hits zero
 
 
 
+//Set a user score, starting at zero
+var userScore = 0;
+
+scoreBox.innerHTML += "<p>User Score: " + userScore + "</p>";
+
+var questionNumber = 0;
+
+
 //Have them be displayed as text one at a time
 function displayQuestion() {
-    let questionNumber = 0;
-    let currentQuestion = questionList[questionNumber];  //Set variables to iterate through question list one at a time
+    var currentQuestion = questionList[questionNumber];  //Set variables to iterate through question list one at a time
     questionSlot.innerHTML += "<p>" + currentQuestion.question + "</p>";
     optionASlot.innerHTML += currentQuestion.optionA;
     optionBSlot.innerHTML += currentQuestion.optionB;
@@ -61,24 +66,56 @@ function displayQuestion() {
     optionDSlot.innerHTML += currentQuestion.optionD;
 }
 
-var checkedAnswer = document.querySelector('input[name="option"]:checked'); 
-console.log(checkedAnswer);
+//Function to clear text from previous question
+function clearQuizBox() {
+    questionSlot.innerHTML = '';
+    optionASlot.innerHTML = '';
+    optionBSlot.innerHTML = '';
+    optionCSlot.innerHTML = '';
+    optionDSlot.innerHTML = '';
+    optionASelect.checked = false;
+    optionBSelect.checked = false;
+    optionCSelect.checked = false;
+    optionDSelect.checked = false;
+}
 
 // function clickNext() {
 //     if (correctAnswer===
 // }
 
+
+
 function startQuiz() {
 
-//Set a user score, starting at zero
-let userScore = 0; 
+
+ 
 
 displayQuestion();
 
-
-
 }
 
+function nextQuestion() {
+    // if (document.querySelector('input[name="option"].checked')) {   
+    //     var checkedAnswer = document.getElementById('option').value;
+    // }
+    // let checkedAnswer = document.querySelector('input[name="option"]:checked'); //This part is not working
+    var checkedAnswer = document.querySelector( 'input[name="option"]:checked'); 
+    if (checkedAnswer === questionList[questionNumber].correctAnswer) {
+        clearQuizBox();
+        questionNumber++;
+        userScore++;
+        displayQuestion();
+    }
+
+    else {
+        clearQuizBox();
+        questionNumber++;
+        displayQuestion();
+    }
+    
+};
+
+console.log(userScore);
 
 
 //Take the user's input and check if it matches the predetermined answers
