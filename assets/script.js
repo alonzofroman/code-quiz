@@ -42,6 +42,21 @@ const questionList = [
             correctAnswer: "C",
     },
     //Question 3
+    {
+        question: "The three popup boxes in Javascript are alert, confirm and _____",
+            optionA: "notify",
+            optionB: "message",
+            optionC: "prompt",
+            optionD: "popup",
+    }
+    //Question 4
+    {
+        question: "Which of the following is not a scope in Javascript?",
+            optionA: "line",
+            optionB: "global",
+            optionC: "local",
+            optionD: "block",
+    }
 ]
 
 //Set at visible timer to create a time limit, ending the quiz when it hits zero
@@ -53,6 +68,8 @@ var userScore = 0;
 
 scoreBox.innerHTML += "<p>User Score: " + userScore + "</p>";
 
+
+//Variable to pull question number from
 var questionNumber = 0;
 
 
@@ -73,33 +90,28 @@ function clearQuizBox() {
     optionBSlot.innerHTML = '';
     optionCSlot.innerHTML = '';
     optionDSlot.innerHTML = '';
-    optionASelect.checked = false;
-    optionBSelect.checked = false;
-    optionCSelect.checked = false;
-    optionDSelect.checked = false;
+    // optionASelect.checked = false;
+    // optionBSelect.checked = false;
+    // optionCSelect.checked = false;
+    // optionDSelect.checked = false;
 }
 
-// function clickNext() {
-//     if (correctAnswer===
-// }
-
+// var checkedAnswer = document.querySelector('input[name="option"]:checked');
 
 
 function startQuiz() {
-
-
- 
-
-displayQuestion();
-
+    displayQuestion();
 }
 
+// var checkedAnswer = document.querySelector('input[type=radio][name=option]:checked');
+ 
+console.log(checkedAnswer);
 function nextQuestion() {
     // if (document.querySelector('input[name="option"].checked')) {   
     //     var checkedAnswer = document.getElementById('option').value;
     // }
-    // let checkedAnswer = document.querySelector('input[name="option"]:checked'); //This part is not working
-    var checkedAnswer = document.querySelector( 'input[name="option"]:checked'); 
+     //This part is not working
+     
     if (checkedAnswer === questionList[questionNumber].correctAnswer) {
         clearQuizBox();
         questionNumber++;
