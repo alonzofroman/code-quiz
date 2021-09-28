@@ -19,22 +19,16 @@
 
         <div id="info-row">
             <div id="scores"></div>
-            <div id="timer"></div>
-            <div id="high-scores"></div>
+            <div >
+                <h2 id="timer"></h2>
+            </div>
         </div>
         
 
         <div class="quiz">
             <div id="question"></div>
             <div id="answers">
-                <!-- <label for="optionA" id="aSlot"></label>
-                <input type="radio" id="optionA" class="option-button" name="option" value="A"><br>
-                <label for="optionB" id="bSlot"></label>
-                <input type="radio" id="optionB" class="option-button" name="option" value="B"><br>
-                <label for="optionC" id="cSlot"></label>
-                <input type="radio" id="optionC" class="option-button" name="option" value="C"><br>
-                <label for="optionD" id="dSlot"></label>
-                <input type="radio" id="optionD" class="option-button" name="option" value="D"><br> -->
+                
                 <button class="answer-button" id="aSlot" data-value="A"></button>
                 <button class="answer-button" id="bSlot" data-value="B"></button>
                 <button class="answer-button" id="cSlot" data-value="C"></button>
@@ -51,7 +45,12 @@
             <button class="start-button" onclick="startQuiz()">Start Quiz</button>
         </div>
 
-        
+        <div id="high-scores">
+            <h4>Highscores</h4>
+            <ol id="saved-scores">
+
+            </ol>
+        </div>
 
     </section>
 

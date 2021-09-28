@@ -112,17 +112,20 @@ function clearQuizBox() {
 
 
 //Set a Timer
-var secondsLeft = 120;
+var secondsLeft = 60;
 
 function countDown() {
-countDownTimer.innerHTML += "<h3>" + "Time Left: " + secondsLeft + "</h3>"
+
     var timeInterval = setInterval(function() {
         secondsLeft--;
 
-    if (secondsLeft > 0) {
+        countDownTimer.textContent = "Time Left: " + secondsLeft;
 
+    if (secondsLeft === 0) {
+        clearInterval(timeInterval);
+        endQuiz();
     }
-    })
+    },1000);
 }
 
 
@@ -130,13 +133,19 @@ countDownTimer.innerHTML += "<h3>" + "Time Left: " + secondsLeft + "</h3>"
 
 //Function for the end of the quiz
 function endQuiz() {
-    prompt()
-}
+    var initials = prompt("Your Score: " + userScore, "Please enter your initials");
+    var finalScore = {
+        user: initials,
+        score: userScore};
+    
+    }
+
 
 // var checkedAnswer = document.querySelector('input[name="option"]:checked');
 
 
 function startQuiz() {
+    clearQuizBox();
     displayQuestion();
     countDown();
 
@@ -157,6 +166,7 @@ function startQuiz() {
     else if (questionNumber == questionList.length - 1) {
         endQuiz(); }
     
+        //When answered, move to the next question //Take the user's input and check if it matches the predetermined answers
     else if (checkedAnswer === questionList[questionNumber].correctAnswer) {
             clearQuizBox();
             questionNumber++;
@@ -193,13 +203,13 @@ function startQuiz() {
 
 
 
-//Take the user's input and check if it matches the predetermined answers
+
 
 //If correct, add one point to user score
 
 //If incorrect, take off time from the timer
 
-//When answered, move to the next question
+
 
 //Display the user's score and track it locally when the quiz is complete, allowing the user to input their initials
 
