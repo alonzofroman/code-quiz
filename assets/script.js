@@ -58,6 +58,7 @@ const questionList = [
             optionB: "global",
             optionC: "local",
             optionD: "block",
+            correctAnswer: "A",
     },
     //Question 5
     {
@@ -66,8 +67,17 @@ const questionList = [
             optionB: "while",
             optionC: "if",
             optionD: "do",
+            correctAnswer: "C",
     },
-    //End Question
+    //Question 6
+    {
+        question: "JSON stands for Javascript Object ______?",
+        optionA: "Notation",
+        optionB: "Number",
+        optionC: "Nachos",
+        optionD: "Nabber",
+        correctAnswer: "A",
+    }
         
 ]
 
@@ -133,15 +143,17 @@ function countDown() {
 
 //Function for the end of the quiz
 function endQuiz() {
-    var initials = prompt("Your Score: " + userScore, "Please enter your initials");
-    var finalScore = {
+    let finalScore = userScore * secondsLeft;
+    var initials = prompt("Your Score: " + finalScore, "Please enter your initials");
+    var initialScore = {
         user: initials,
-        score: userScore};
-    
+        score: finalScore};
+    localStorage.setItem("storedScores", JSON.stringify(initialScore));
+    console.log("storedScores");
     }
 
 
-// var checkedAnswer = document.querySelector('input[name="option"]:checked');
+
 
 
 function startQuiz() {
@@ -150,7 +162,7 @@ function startQuiz() {
     countDown();
 
 }
-// var checkedAnswer = document.querySelector('input[type=radio][name=option]:checked');
+
 
 // while (questionNumber<6) {
     // displayQuestion();
