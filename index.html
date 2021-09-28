@@ -22,10 +22,18 @@
         <div class="quiz">
             <div id="question"></div>
             <div class="answers">
-                <button id="optionA"></button>
-                <button id="optionB"></button>
-                <button id="optionC"></button>
-                <button id="optionD"></button>
+                <input type="radio" id="optionA" class="option-button" name="option" value="A"><br>
+                <label for="optionA" id="aSlot"></label>
+                <input type="radio" id="optionB" class="option-button" name="option" value="B"><br>
+                <label for="optionB" id="bSlot"></label>
+                <input type="radio" id="optionC" class="option-button" name="option" value="C"><br>
+                <label for="optionC" id="cSlot"></label>
+                <input type="radio" id="optionD" class="option-button" name="option" value="D"><br>
+                <label for="optionD" id="dSlot"></label>
+            </div>
+            <br>
+            <div>
+                <button id="nextButton">Next Question</button>
             </div>
         </div>
 

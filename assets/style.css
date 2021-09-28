@@ -28,6 +28,18 @@
     width: 500px;
 }
 
+.answers {
+    padding-left: 15px;
+}
+
+.option-button {
+    display: block;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+
 .button {
     margin: auto;
     width: 100px;
