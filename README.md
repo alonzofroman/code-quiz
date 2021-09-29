@@ -52,4 +52,3 @@ The goal of this project was to create a multiple choice quiz with a countdown t
 - W3Schools (https://www.w3schools.com/)
 - MDN Web Docs (https://developer.mozilla.org/en-US/)
 - Code Grepper (https://www.codegrepper.com/code-examples/javascript/insert+values+to+empty+array+javascript)
-- Bit Degree (https://www.bitdegree.org/learn/javascript-setinterval)

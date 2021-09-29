@@ -104,7 +104,7 @@ function clearQuizBox() {
 var secondsLeft = 60;
 
 function countDown() {
-
+    
     var timeInterval = setInterval(function() {
         secondsLeft--;
 
@@ -112,12 +112,10 @@ function countDown() {
 
     if (secondsLeft === 0) {
         clearInterval(timeInterval);
-        endQuiz();
+        // endQuiz();
     }
 
-    else if (questionNumber == questionList.length -1) {
-        clearInterval(timeInterval);
-    }
+
     },1000);
 }
 
