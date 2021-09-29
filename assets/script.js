@@ -114,8 +114,13 @@ function countDown() {
         clearInterval(timeInterval);
         endQuiz();
     }
+
+    else if (questionNumber == questionList.length -1) {
+        clearInterval(timeInterval);
+    }
     },1000);
 }
+
 
 //Display the user's score and track it locally when the quiz is complete, allowing the user to input their initials
 //Function for the end of the quiz
@@ -130,7 +135,7 @@ function endQuiz() {
             localStorage.setItem("storedScores", JSON.stringify(initialScore));
         }
     
-    }
+}
 
 var savedScores = [];
 
@@ -139,7 +144,7 @@ function gatherScores() {
     if (storedScores !== null) {
         savedScores.push(storedScores);
         }
-    }
+}
     
 //Function to display scores on click
 function displayScores() { 
@@ -153,12 +158,9 @@ function displayScores() {
         var li = document.createElement("li");
         li.textContent = stringItem;
         scoreSlot.appendChild(li);
-        console.log(savedScores);
-    
        }
-    
-    
-    }
+}
+
 //Start the quiz
 function startQuiz() {
     clearQuizBox();
@@ -172,10 +174,12 @@ answerChoices.addEventListener("click", function (event) {
    
 //Check if the quiz is over and trigger end quiz function
     if (questionNumber == questionList.length - 1 && checkedAnswer === questionList[questionNumber].correctAnswer) {
+        clearQuizBox();
         userScore++; 
         endQuiz(); }
 
     else if (questionNumber == questionList.length - 1) {
+        clearQuizBox();
         endQuiz(); }
     
         //When answered, move to the next question //Take the user's input and check if it matches the predetermined answers
