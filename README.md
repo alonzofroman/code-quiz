@@ -8,7 +8,7 @@ The goal of this project was to create a multiple choice quiz with a countdown t
 
 ## Screenshot
 
-<img src="./assets/images/code-site.jpg">
+<img src="./assets/images/quiz-site.jpg">
 
 ## Code Snippet
 

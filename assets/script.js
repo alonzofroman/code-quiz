@@ -126,11 +126,36 @@ function endQuiz() {
     var initialScore = {
         user: initials,
         score: finalScore,};
-        console.log(initialScore);
     localStorage.setItem("storedScores", JSON.stringify(initialScore));
-    
     }
 
+var savedScores = [];
+
+function gatherScores() {
+    var storedScores = JSON.parse(localStorage.getItem("storedScores"));
+    if (storedScores !== null) {
+        savedScores.push(storedScores);
+        }
+    }
+    
+//Function to display scores on click
+function displayScores() { 
+    
+    gatherScores();
+
+       for (let i = 0; i < savedScores.length; i++) {
+           var scoreItem = savedScores[i];
+           console.log(savedScores);
+           var stringItem = JSON.stringify(scoreItem);
+        var li = document.createElement("li");
+        li.textContent = stringItem;
+        scoreSlot.appendChild(li);
+        console.log(savedScores);
+    
+       }
+    
+    
+    }
 //Start the quiz
 function startQuiz() {
     clearQuizBox();
@@ -168,34 +193,7 @@ answerChoices.addEventListener("click", function (event) {
     
     }) 
 
-var savedScores = [];
 
-
-function gatherScores() {
-    var storedScores = JSON.parse(localStorage.getItem("storedScores"));
-
-    if (storedScores !== null) {
-        savedScores = storedScores;
-    }
-}
-
-//Function to display scores on click
-function displayScores() { 
-
-gatherScores();
-   for (var i = 0; i <= savedScores.length; i++) {
-       var scoreItem = savedScores[i];
-
-    var li = document.createElement("li");
-    li.textContent = scoreItem[i];
-    scoreSlot.appendChild(li);
-
-console.log(savedScores);
-console.log(storedScores);
-   }
-
-
-}
 
 
 
