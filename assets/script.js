@@ -4,6 +4,7 @@ const startButton = document.getElementById("start-button");
 const countDownTimer = document.getElementById("timer");
 const highScores = document.getElementById("high-scores");
 const scoreSlot = document.getElementById("saved-scores");
+const displayScoreButton = document.getElementById("display-button");
 
 const quizBox = document.getElementById("quiz");
 const questionSlot = document.getElementById("question");
@@ -12,15 +13,6 @@ const optionASlot = document.getElementById("aSlot");
 const optionBSlot = document.getElementById("bSlot");
 const optionCSlot = document.getElementById("cSlot");
 const optionDSlot = document.getElementById("dSlot");
-
-
-// const optionASelect = document.getElementById("optionA");
-// const optionBSelect = document.getElementById("optionB");
-// const optionCSelect = document.getElementById("optionC");
-// const optionDSelect = document.getElementById("optionD");
-// const nextButton = document.getElementById("nextButton");
-
-
 
 //Write every question on the quiz with three answer options
 
@@ -82,19 +74,11 @@ const questionList = [
         
 ]
 
-
-
-
-
 //Set a user score, starting at zero
 var userScore = 0;
 
-
-
-
 //Variable to pull question number from
 var questionNumber = 0;
-
 
 //Have them be displayed as text one at a time
 function displayQuestion() {
@@ -104,8 +88,6 @@ function displayQuestion() {
     optionBSlot.innerHTML += currentQuestion.optionB;
     optionCSlot.innerHTML += currentQuestion.optionC;
     optionDSlot.innerHTML += currentQuestion.optionD;
-
-    
 };
 
 //Function to clear text from previous question
@@ -115,10 +97,6 @@ function clearQuizBox() {
     optionBSlot.innerHTML = '';
     optionCSlot.innerHTML = '';
     optionDSlot.innerHTML = '';
-    // optionASelect.checked = false;
-    // optionBSelect.checked = false;
-    // optionCSelect.checked = false;
-    // optionDSelect.checked = false;
 };
 
 
@@ -139,38 +117,32 @@ function countDown() {
     },1000);
 }
 
-
-
-
+//Display the user's score and track it locally when the quiz is complete, allowing the user to input their initials
 //Function for the end of the quiz
 function endQuiz() {
+    
     let finalScore = userScore * secondsLeft;
     var initials = prompt("Your Score (correct answers x time left): " + finalScore, "Please enter your initials");
     var initialScore = {
         user: initials,
-        score: finalScore};
+        score: finalScore,};
+        console.log(initialScore);
     localStorage.setItem("storedScores", JSON.stringify(initialScore));
     
     }
-
-
-
 
 //Start the quiz
 function startQuiz() {
     clearQuizBox();
     displayQuestion();
     countDown();
-
 }
 
-    // Function to check answers
-    answerChoices.addEventListener("click", function (event) {
-        var checkedAnswer = event.target.getAttribute("data-value");
-
-    console.log(checkedAnswer);
+// Function to check answers
+answerChoices.addEventListener("click", function (event) {
+    var checkedAnswer = event.target.getAttribute("data-value");
    
-    //Check if the quiz is over and trigger end quiz function
+//Check if the quiz is over and trigger end quiz function
     if (questionNumber == questionList.length - 1 && checkedAnswer === questionList[questionNumber].correctAnswer) {
         userScore++; 
         endQuiz(); }
@@ -183,39 +155,43 @@ function startQuiz() {
             clearQuizBox();
             questionNumber++;
             userScore++; //Add to user score if correct
-            console.log(userScore);
-            displayQuestion();
-            // console.log(questionNumber);
+            displayQuestion();    
         }
         
-    
     else {
             clearQuizBox();
             questionNumber++;
             userScore--;
-            secondsLeft - 5;
-            console.log(userScore);
+            secondsLeft -= 5; //If incorrect, take off time from the timer
             displayQuestion();
-            // console.log(questionNumber);
         }
     
-        
     }) 
 
+var savedScores = [];
 
+
+function gatherScores() {
+    var storedScores = JSON.parse(localStorage.getItem("storedScores"));
+
+    if (storedScores !== null) {
+        savedScores = storedScores;
+    }
+}
 
 //Function to display scores on click
-function displayScores() {
-   var storedScores = JSON.parse(localStorage.getItem("storedScores"));
+function displayScores() { 
 
-   for (var i = 0; i < storedScores.length; i++) {
-       var scoreItem = storedScores[i];
+gatherScores();
+   for (var i = 0; i <= savedScores.length; i++) {
+       var scoreItem = savedScores[i];
 
     var li = document.createElement("li");
     li.textContent = scoreItem[i];
-    savedScores.appendChild(li);
+    scoreSlot.appendChild(li);
 
-
+console.log(savedScores);
+console.log(storedScores);
    }
 
 
@@ -223,10 +199,10 @@ function displayScores() {
 
 
 
-//If incorrect, take off time from the timer
 
 
 
-//Display the user's score and track it locally when the quiz is complete, allowing the user to input their initials
+
+
 
 
