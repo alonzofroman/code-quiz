@@ -3,6 +3,7 @@ const scoreBox = document.getElementById("scores");
 const startButton = document.getElementById("start-button");
 const countDownTimer = document.getElementById("timer");
 const highScores = document.getElementById("high-scores");
+const scoreSlot = document.getElementById("saved-scores");
 
 const quizBox = document.getElementById("quiz");
 const questionSlot = document.getElementById("question");
@@ -81,7 +82,7 @@ const questionList = [
         
 ]
 
-//Set at visible timer to create a time limit, ending the quiz when it hits zero
+
 
 
 
@@ -144,18 +145,18 @@ function countDown() {
 //Function for the end of the quiz
 function endQuiz() {
     let finalScore = userScore * secondsLeft;
-    var initials = prompt("Your Score: " + finalScore, "Please enter your initials");
+    var initials = prompt("Your Score (correct answers x time left): " + finalScore, "Please enter your initials");
     var initialScore = {
         user: initials,
         score: finalScore};
     localStorage.setItem("storedScores", JSON.stringify(initialScore));
-    console.log("storedScores");
+    
     }
 
 
 
 
-
+//Start the quiz
 function startQuiz() {
     clearQuizBox();
     displayQuestion();
@@ -163,16 +164,15 @@ function startQuiz() {
 
 }
 
-
-// while (questionNumber<6) {
-    // displayQuestion();
+    // Function to check answers
     answerChoices.addEventListener("click", function (event) {
         var checkedAnswer = event.target.getAttribute("data-value");
 
     console.log(checkedAnswer);
    
+    //Check if the quiz is over and trigger end quiz function
     if (questionNumber == questionList.length - 1 && checkedAnswer === questionList[questionNumber].correctAnswer) {
-        userScore++;
+        userScore++; 
         endQuiz(); }
 
     else if (questionNumber == questionList.length - 1) {
@@ -182,7 +182,7 @@ function startQuiz() {
     else if (checkedAnswer === questionList[questionNumber].correctAnswer) {
             clearQuizBox();
             questionNumber++;
-            userScore++;
+            userScore++; //Add to user score if correct
             console.log(userScore);
             displayQuestion();
             // console.log(questionNumber);
@@ -193,6 +193,7 @@ function startQuiz() {
             clearQuizBox();
             questionNumber++;
             userScore--;
+            secondsLeft - 5;
             console.log(userScore);
             displayQuestion();
             // console.log(questionNumber);
@@ -203,21 +204,24 @@ function startQuiz() {
 
 
 
+//Function to display scores on click
+function displayScores() {
+   var storedScores = JSON.parse(localStorage.getItem("storedScores"));
 
-// scoreBox.innerHTML += "<p>User Score: " + userScore + "</p>";
-// function nextQuestion() {
-    // if (document.querySelector('input[name="option"].checked')) {   
-    //     var checkedAnswer = document.getElementById('option').value;
-    // }
-     //This part is not working
-     
-    
+   for (var i = 0; i < storedScores.length; i++) {
+       var scoreItem = storedScores[i];
 
-
-
+    var li = document.createElement("li");
+    li.textContent = scoreItem[i];
+    savedScores.appendChild(li);
 
 
-//If correct, add one point to user score
+   }
+
+
+}
+
+
 
 //If incorrect, take off time from the timer
 
