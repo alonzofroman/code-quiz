@@ -126,7 +126,10 @@ function endQuiz() {
     var initialScore = {
         user: initials,
         score: finalScore,};
-    localStorage.setItem("storedScores", JSON.stringify(initialScore));
+        if (initials !== null) {
+            localStorage.setItem("storedScores", JSON.stringify(initialScore));
+        }
+    
     }
 
 var savedScores = [];
